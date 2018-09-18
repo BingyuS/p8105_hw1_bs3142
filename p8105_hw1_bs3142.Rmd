@@ -5,3 +5,22 @@ date: "9/17/2018"
 output: html_document
 ---
 
+# Problem 1
+## Create data frame
+
+```{r}
+library(tidyverse)
+```
+
+```{r}
+set.seed(1)
+
+p1_df = tibble(
+  random_sample = runif(n = 10, min = 0, max = 5),
+  vec_char = c("This", "is", "trying", "to", "answer", "question", "1", "of", "homework", "1"),
+  vec_logical = c(random_sample > 2),
+  vec_factor = factor(c("right", "right", "left", "right", "left", "right", "right", "left", "right", "left"))
+)
+```
+
+
