@@ -145,7 +145,7 @@ $(document).ready(function () {
 
 p1_df = tibble(
   random_sample = runif(n = 10, min = 0, max = 5),
-  vec_char = c(&quot;This&quot;, &quot;is&quot;, &quot;trying&quot;, &quot;to&quot;, &quot;answer&quot;, &quot;question&quot;, &quot;1&quot;, &quot;of&quot;, &quot;homework&quot;, &quot;1&quot;),
+  vec_char = c(&quot;This&quot;, &quot;is&quot;, &quot;trying&quot;, &quot;to&quot;, &quot;answer&quot;, &quot;question&quot;, &quot;one&quot;, &quot;of&quot;, &quot;homework&quot;, &quot;one&quot;),
   vec_logical = c(random_sample &gt; 2),
   vec_factor = factor(c(&quot;blue&quot;, &quot;green&quot;, &quot;blue&quot;, &quot;green&quot;, &quot;green&quot;, &quot;blue&quot;, &quot;blue&quot;, &quot;green&quot;, &quot;blue&quot;, &quot;green&quot;))
 )</code></pre>
@@ -166,15 +166,31 @@ p1_df = tibble(
 <p>Means of random_sample and vec_logical work, whearas means for vec_char and vec_factor do not work. This is because means can only be calculated from numeric values.</p>
 <div id="convert-character-logical-and-factor-vectors-to-numeric-numbers" class="section level4">
 <h4>Convert character, logical, and factor vectors to numeric numbers</h4>
+<p>Write a code chunk that applies the as.numeric function to the logical, character, and factor variables (show this chunk but not the output).</p>
 <pre class="r"><code>as.numeric(p1_df$vec_char)</code></pre>
 <pre><code>## Warning: NAs introduced by coercion</code></pre>
-<pre><code>##  [1] NA NA NA NA NA NA  1 NA NA  1</code></pre>
+<pre><code>##  [1] NA NA NA NA NA NA NA NA NA NA</code></pre>
 <pre class="r"><code>as.numeric(p1_df$vec_logical)</code></pre>
 <pre><code>##  [1] 0 0 1 1 0 1 1 1 1 0</code></pre>
 <pre class="r"><code>as.numeric(p1_df$vec_factor)</code></pre>
 <pre><code>##  [1] 1 2 1 2 2 1 1 2 1 2</code></pre>
+<p>In a second code chunk, convert your character variable from character to factor to numeric; similarly, convert your factor variable from factor to character to numeric. What happens?</p>
+<pre class="r"><code>vec_char2 &lt;- as.factor(p1_df$vec_char)
+as.numeric(vec_char2)</code></pre>
+<pre><code>##  [1] 7 3 9 8 1 6 5 4 2 5</code></pre>
+<pre class="r"><code>vec_fac2 &lt;- as.character(p1_df$vec_factor)
+as.numeric(vec_fac2)</code></pre>
+<pre><code>## Warning: NAs introduced by coercion</code></pre>
+<pre><code>##  [1] NA NA NA NA NA NA NA NA NA NA</code></pre>
 </div>
 </div>
+</div>
+</div>
+<div id="problem-2" class="section level1">
+<h1>Problem 2</h1>
+<p>This problem focuses on plotting and the use of inline R code.</p>
+<div id="create-data-frame-1" class="section level2">
+<h2>Create data frame</h2>
 </div>
 </div>
 

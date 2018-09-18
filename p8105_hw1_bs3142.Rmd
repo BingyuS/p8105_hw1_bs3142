@@ -17,7 +17,7 @@ set.seed(1)
 
 p1_df = tibble(
   random_sample = runif(n = 10, min = 0, max = 5),
-  vec_char = c("This", "is", "trying", "to", "answer", "question", "1", "of", "homework", "1"),
+  vec_char = c("This", "is", "trying", "to", "answer", "question", "one", "of", "homework", "one"),
   vec_logical = c(random_sample > 2),
   vec_factor = factor(c("blue", "green", "blue", "green", "green", "blue", "blue", "green", "blue", "green"))
 )
@@ -36,9 +36,26 @@ Means of random_sample and vec_logical work, whearas means for vec_char and vec_
 
 #### Convert character, logical, and factor vectors to numeric numbers
 
+Write a code chunk that applies the as.numeric function to the logical, character, and factor variables (show this chunk but not the output).
+
 ```{r}
 as.numeric(p1_df$vec_char)
 as.numeric(p1_df$vec_logical)
 as.numeric(p1_df$vec_factor)
 ```
+
+In a second code chunk, convert your character variable from character to factor to numeric; similarly, convert your factor variable from factor to character to numeric. What happens?
+
+```{r}
+vec_char2 <- as.factor(p1_df$vec_char)
+as.numeric(vec_char2)
+
+vec_fac2 <- as.character(p1_df$vec_factor)
+as.numeric(vec_fac2)
+```
+
+# Problem 2
+This problem focuses on plotting and the use of inline R code.
+
+## Create data frame
 
