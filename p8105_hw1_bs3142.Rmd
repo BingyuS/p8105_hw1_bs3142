@@ -79,3 +79,26 @@ Write a short description of your vector using inline R code, including: * the s
 
 The size of dataset is `r nrow(p2_df$x)`, the mean of x is `r mean(p2_df$x)`, and the median of x is `r median(p2_df$x)`, the proportion of cases for which the logical vector is TRUE is `r pro
 
+## Scatterplot
+
+Make a scatterplot of y vs x.
+
+```{r}
+p2_xy_sp1 <- ggplot(p2_df, aes(x = x, y = y, color = vec_logical_p2)) + geom_point()
+
+p2_xy_sp1
+```
+
+```{r}
+p2_xy_sp2 <- ggplot(p2_df, aes(x =x, y = y, color = vec_numeric_p2)) + geom_point()
+
+p2_xy_sp2
+```
+
+```{r}
+p2_xy_sp3 <- ggplot(p2_df, aes(x =x, y = y, color = vec_factor_p2)) + geom_point()
+
+p2_xy_sp3
+```
+
+They all look the same.
