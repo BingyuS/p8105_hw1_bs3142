@@ -73,6 +73,8 @@ p2_df = tibble(
   vec_numeric_p2 = c(vec_logical_p2),
   vec_factor_p2 = c(vec_logical_p2)
 )
+
+p2_df
 ```
 
 Write a short description of your vector using inline R code, including: * the size of the dataset * the mean and median of x * the proportion of cases for which the logical vector is TRUE
@@ -88,12 +90,16 @@ p2_xy_sp1 <- ggplot(p2_df, aes(x = x, y = y, color = vec_logical_p2)) + geom_poi
 
 p2_xy_sp1
 ```
+Blue dots represent x + y > 0, and red dots represent x + y < 0.
+
 
 ```{r}
 p2_xy_sp2 <- ggplot(p2_df, aes(x =x, y = y, color = vec_numeric_p2)) + geom_point()
 
 p2_xy_sp2
 ```
+
+
 
 ```{r}
 p2_xy_sp3 <- ggplot(p2_df, aes(x =x, y = y, color = vec_factor_p2)) + geom_point()
@@ -102,3 +108,10 @@ p2_xy_sp3
 ```
 
 They all look the same.
+
+Export your first scatterplot to your project directory using ggsave.
+
+```{r}
+ggsave("p2_xy_sp1.pdf")
+```
+
