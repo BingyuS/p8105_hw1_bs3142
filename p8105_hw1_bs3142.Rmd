@@ -6,6 +6,7 @@ output: github_document
 ---
 
 # Problem 1
+
 ## Create data frame
 
 Load package tidyverse
@@ -13,7 +14,7 @@ Load package tidyverse
 library(tidyverse)
 ```
 
-*Create a data frame comprised of:*
+*Create a data frame comprised of*
 * A random sample of size 10 from a uniform[0, 5] distribution.
 * A logical vector indicating whether elements of the sample are greater than 2.
 * A (length-10) character vector.
@@ -21,44 +22,47 @@ library(tidyverse)
 ```{r q1_df}
 set.seed(1)
 
-p1_df = tibble(
-  random_sample_q1 = runif(n = 10, min = 0, max = 5),
-  vec_char = c("This", "is", "trying", "to", "answer", "question", "one", "of", "homework", "one"),
-  vec_logical = c(random_sample_q1 > 2),
-  vec_factor = factor(c("blue", "green", "blue", "green", "green", "blue", "blue", "green", "blue", "green"))
+q1_df = tibble(q1_random_sample = runif(n = 10, min = 0, max = 5),
+               q1_vec_char = c("This", "is", "trying", "to", "answer", "question", "one", "of", "homework", "one"),
+               q1_vec_logical = c(q1_random_sample > 2),
+               q1_vec_factor = factor(c("blue", "green", "blue", "green", "green", "blue", "blue", "green", "blue", "green"))
 )
 ```
 
 ### Means of each variable in my dataframe.
-
+Try to take the mean of each variable in your dataframe. What works and what doesn’t? Why?
 ```{r}
-mean(p1_df$random_sample)
-mean(p1_df$vec_char)
-mean(p1_df$vec_logical)
-mean(p1_df$vec_factor)
+mean(q1_df$q1_random_sample)
+mean(q1_df$q1_vec_char)
+mean(q1_df$q1_vec_logical)
+mean(q1_df$q1_vec_factor)
 ```
 
-Means of random_sample and vec_logical work, whearas means for vec_char and vec_factor do not work. This is because means can only be calculated from numeric values.
+Means of random_sample and logical vector work, whereas means for character vector and factor vector do not work. This is because means can only be calculated from numeric values.
+
 
 #### Convert character, logical, and factor vectors to numeric numbers
 
 Write a code chunk that applies the as.numeric function to the logical, character, and factor variables (show this chunk but not the output).
 
-```{r}
-as.numeric(p1_df$vec_char)
-as.numeric(p1_df$vec_logical)
-as.numeric(p1_df$vec_factor)
+```{r eval=FALSE}
+as.numeric(q1_df$q1_vec_char)
+as.numeric(q1_df$q1_vec_logical)
+as.numeric(q1_df$q1_vec_factor)
 ```
 
 In a second code chunk, convert your character variable from character to factor to numeric; similarly, convert your factor variable from factor to character to numeric. What happens?
 
 ```{r}
-vec_char2 <- as.factor(p1_df$vec_char)
-as.numeric(vec_char2)
+q1_vec_char2 <- as.factor(q1_df$q1_vec_char)
+as.numeric(q1_vec_char2)
 
-vec_fac2 <- as.character(p1_df$vec_factor)
-as.numeric(vec_fac2)
+q1_vec_fac2 <- as.character(q1_df$q1_vec_factor)
+as.numeric(q1_vec_fac2)
 ```
+
+When character variable is converted to factor variable first, it can be converted to numeric factor. However, when a factor is converted to character, it can no longer be converted to numeric factor. Therefore, only factor vector can be converted to numeric values.
+
 
 # Problem 2
 This problem focuses on plotting and the use of inline R code.
