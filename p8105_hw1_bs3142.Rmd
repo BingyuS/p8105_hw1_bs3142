@@ -8,17 +8,23 @@ output: github_document
 # Problem 1
 ## Create data frame
 
-```{r}
+Load package tidyverse
+```{r tidyverse}
 library(tidyverse)
 ```
 
-```{r}
+*Create a data frame comprised of:*
+* A random sample of size 10 from a uniform[0, 5] distribution.
+* A logical vector indicating whether elements of the sample are greater than 2.
+* A (length-10) character vector.
+* A (length-10) factor vector.
+```{r q1_df}
 set.seed(1)
 
 p1_df = tibble(
-  random_sample = runif(n = 10, min = 0, max = 5),
+  random_sample_q1 = runif(n = 10, min = 0, max = 5),
   vec_char = c("This", "is", "trying", "to", "answer", "question", "one", "of", "homework", "one"),
-  vec_logical = c(random_sample > 2),
+  vec_logical = c(random_sample_q1 > 2),
   vec_factor = factor(c("blue", "green", "blue", "green", "green", "blue", "blue", "green", "blue", "green"))
 )
 ```
@@ -66,15 +72,13 @@ A numeric vector created by coercing the above logical vector
 A factor vector created by coercing the above logical vector
 
 ```{r}
-p2_df = tibble(
-  x = rnorm(n = 1000, mean = 0, sd = 1),
-  y = rnorm(n = 1000, mean = 0, sd = 1),
-  vec_logical_p2 = c(x + y > 0),
-  vec_numeric_p2 = c(vec_logical_p2),
-  vec_factor_p2 = c(vec_logical_p2)
+p2_df = tibble(x = rnorm(n = 1000, mean = 0, sd = 1),
+               y = rnorm(n = 1000, mean = 0, sd = 1),
+               p2_vec_logical = c(x + y > 0),
+               p2_vec_numeric = as.numeric(p2_vec_logical),
+               p2_vec_factor = as.factor(p2_vec_logical),
 )
 
-p2_df
 ```
 
 Write a short description of your vector using inline R code, including: * the size of the dataset * the mean and median of x * the proportion of cases for which the logical vector is TRUE
@@ -86,7 +90,7 @@ The size of dataset is `r nrow(p2_df$x)`, the mean of x is `r mean(p2_df$x)`, an
 Make a scatterplot of y vs x.
 
 ```{r}
-p2_xy_sp1 <- ggplot(p2_df, aes(x = x, y = y, color = vec_logical_p2)) + geom_point()
+p2_xy_sp1 <- ggplot(p2_df, aes(x = x, y = y, color = p2_vec_logical)) + geom_point()
 
 p2_xy_sp1
 ```
@@ -94,7 +98,7 @@ Blue dots represent x + y > 0, and red dots represent x + y < 0.
 
 
 ```{r}
-p2_xy_sp2 <- ggplot(p2_df, aes(x =x, y = y, color = vec_numeric_p2)) + geom_point()
+p2_xy_sp2 <- ggplot(p2_df, aes(x =x, y = y, color = p2_vec_numeric)) + geom_point()
 
 p2_xy_sp2
 ```
@@ -102,7 +106,7 @@ p2_xy_sp2
 
 
 ```{r}
-p2_xy_sp3 <- ggplot(p2_df, aes(x =x, y = y, color = vec_factor_p2)) + geom_point()
+p2_xy_sp3 <- ggplot(p2_df, aes(x =x, y = y, color = p2_vec_factor)) + geom_point()
 
 p2_xy_sp3
 ```
