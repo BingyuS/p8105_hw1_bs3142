@@ -30,7 +30,7 @@ q1_df = tibble(q1_random_sample = runif(n = 10, min = 0, max = 5),
 )
 ```
 
-### (b) Means of variables
+## (b) Means of variables
 
 Means for my random sample, character vector, logical vector, and factor vector are: 
 
@@ -45,7 +45,7 @@ Reasoning:
 Using mean() function, mean of my random sample and mean of logical vector can be computed. However, it does not apply to charactor or factor vector. By definition, mean only applies to numeric variables. Since my randomly generated sample is numeric, mean() function works. For logical vector, the condtion "true" or "false" is represented as 1s or 0s respectively, the mean is calculable. 
 
 
-#### (c) Conversion
+## (c) Conversion
 
 Using as.numeric function to convert the logical, character, and factor variables to numeric numbers (code is included but not the output).
 
@@ -55,7 +55,9 @@ as.numeric(q1_df$q1_vec_logical)
 as.numeric(q1_df$q1_vec_factor)
 ```
 
-* as.numeric() function can covert logical and factor vectors to numbers, except character vector.
+* as.numeric() function can covert logical and factor vectors to numbers, except character vector
+* Logical vector is represented as 1s and 0s
+* Factor vector is represented as levels which in turn converted to numbers
 
 More conversions
 
@@ -67,7 +69,7 @@ as.character(q1_df$q1_vec_factor)
 as.numeric(as.character(q1_df$q1_vec_factor))
 ```
 
-* Observation:
+* Observations:
     * Characters are converted to factors by assigning levels to each factor
     * Numbers are assigned to factors corresponding to factor variables' level
     * Similarly, factors can be converted to characters
