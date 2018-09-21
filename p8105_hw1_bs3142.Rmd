@@ -125,7 +125,7 @@ ggplot(q2_df, aes(x =x, y = y, color = q2_vec_numeric)) + geom_point()
 
 Scatterplot 3 of y vs x, color by factor vector
 
-```{r}
+```{r plot3}
 ggplot(q2_df, aes(x =x, y = y, color = q2_vec_factor)) + geom_point()
 ```
 
