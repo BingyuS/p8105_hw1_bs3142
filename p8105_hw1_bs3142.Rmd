@@ -87,7 +87,7 @@ This problem focuses on plotting and the use of inline R code.
     * A numeric vector created by coercing the above logical vector
     * A factor vector created by coercing the above logical vector
 
-```{r}
+```{r q2_df}
 set.seed(2)
 
 q2_df = tibble(x = rnorm(n = 1000, mean = 0, sd = 1),
@@ -109,35 +109,32 @@ q2_df = tibble(x = rnorm(n = 1000, mean = 0, sd = 1),
 
 ## Scatterplot
 
-Make a scatterplot of y vs x.
+Scatterplot 1 of y vs x and color by logical vector (x + y > 0)
 
-```{r}
-q2_xy_sp1 <- ggplot(q2_df, aes(x = x, y = y, color = q2_vec_logical)) + geom_point()
-
-q2_xy_sp1
-```
-Blue dots represent x + y > 0, and red dots represent x + y < 0.
-
-
-```{r}
-q2_xy_sp2 <- ggplot(q2_df, aes(x =x, y = y, color = q2_vec_numeric)) + geom_point()
-
-q2_xy_sp2
+```{r plot1}
+ggplot(q2_df, aes(x = x, y = y, color = q2_vec_logical)) + geom_point()
 ```
 
+* Since our logical vector is defined as x + y > 0, blue dots and red dots represent x + y > 0 and x + y < 0, respectively. The distribution of blue and red dots is symmetric, indicating normal distribution.
 
+Scatterplot 2 of y vs x, color by numeric vector
 
-```{r}
-q2_xy_sp3 <- ggplot(q2_df, aes(x =x, y = y, color = q2_vec_factor)) + geom_point()
-
-q2_xy_sp3
+```{r plot2}
+ggplot(q2_df, aes(x =x, y = y, color = q2_vec_numeric)) + geom_point()
 ```
 
-They all look the same.
-
-Export your first scatterplot to your project directory using ggsave.
+Scatterplot 3 of y vs x, color by factor vector
 
 ```{r}
+ggplot(q2_df, aes(x =x, y = y, color = q2_vec_factor)) + geom_point()
+```
+
+* Since both the numeric vector and factor vector are coerced from logical vector, we expect the three plots to resemble the same distribution. The resulting plots showed same pattern of distribution.
+* For plot 2, which color by numeric vectors, the color is different from two other plots. The reason is that numerics can be continous, whereas both logical and factor vectors are discrete. Therefore, the color for plot 2 is a gradient where 0 is black and 1 is blue. In this case, the plot illustrates only two colors, consistent with numeric vector being only two values.
+
+Export my first scatterplot to my project directory using ggsave.
+
+```{r save plot}
 ggsave("q2_xy_sp1.pdf")
 ```
 
