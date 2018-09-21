@@ -19,6 +19,7 @@ library(tidyverse)
     * A logical vector indicating whether elements of the sample are greater than 2
     * A (length-10) character vector
     * A (length-10) factor vector
+    
 ```{r q1_df}
 set.seed(1)
 
@@ -29,22 +30,24 @@ q1_df = tibble(q1_random_sample = runif(n = 10, min = 0, max = 5),
 )
 ```
 
-### (b) Mean of each variable in my dataframe
+### (b) Means of variables
 
-Try to take the mean of each variable in your dataframe. What works and what doesn’t? Why?
-```{r}
+Means for my random sample, character vector, logical vector, and factor vector are: 
+
+```{r means}
 mean(q1_df$q1_random_sample)
 mean(q1_df$q1_vec_char)
 mean(q1_df$q1_vec_logical)
 mean(q1_df$q1_vec_factor)
 ```
 
-Means of random_sample and logical vector work, whereas means for character vector and factor vector do not work. This is because means can only be calculated from numeric values.
+Reasoning: 
+Using mean() function, mean of my random sample and mean of logical vector can be computed. However, it does not apply to charactor or factor vector. By definition, mean only applies to numeric variables. Since my randomly generated sample is numeric, mean() function works. For logical vector, the condtion "true" or "false" is represented as 1s or 0s respectively, the mean is calculable. 
 
 
-#### (c) Convert character, logical, and factor vectors to numeric numbers
+#### (c) Conversion
 
-* Write a code chunk that applies the as.numeric function to the logical, character, and factor variables (show this chunk but not the output).
+Using as.numeric function to convert the logical, character, and factor variables to numeric numbers (code is included but not the output).
 
 ```{r eval=FALSE}
 as.numeric(q1_df$q1_vec_char)
@@ -52,17 +55,24 @@ as.numeric(q1_df$q1_vec_logical)
 as.numeric(q1_df$q1_vec_factor)
 ```
 
-* In a second code chunk, convert your character variable from character to factor to numeric; similarly, convert your factor variable from factor to character to numeric. What happens?
+* as.numeric() function can covert logical and factor vectors to numbers, except character vector.
 
-```{r}
-q1_vec_char2 <- as.factor(q1_df$q1_vec_char)
-as.numeric(q1_vec_char2)
+More conversions
 
-q1_vec_fac2 <- as.character(q1_df$q1_vec_factor)
-as.numeric(q1_vec_fac2)
+```{r conversions}
+as.factor(q1_df$q1_vec_char)
+as.numeric(as.factor(q1_df$q1_vec_char))
+
+as.character(q1_df$q1_vec_factor)
+as.numeric(as.character(q1_df$q1_vec_factor))
 ```
 
-When character variable is converted to factor variable first, it can be converted to numeric factor. However, when a factor is converted to character, it can no longer be converted to numeric factor. Therefore, only factor vector can be converted to numeric values.
+* Observation:
+    * Characters are converted to factors by assigning levels to each factor
+    * Numbers are assigned to factors corresponding to factor variables' level
+    * Similarly, factors can be converted to characters
+    * Since characters have no order, it is unable to assign numerics to characters
+    * In summary, it is convertable between character and factor vectors, but only factor vector can be converted to numeric values.
 
 
 # Problem 2
@@ -78,48 +88,49 @@ This problem focuses on plotting and the use of inline R code.
     * A factor vector created by coercing the above logical vector
 
 ```{r}
-p2_df = tibble(x = rnorm(n = 1000, mean = 0, sd = 1),
+set.seed(2)
+
+q2_df = tibble(x = rnorm(n = 1000, mean = 0, sd = 1),
                y = rnorm(n = 1000, mean = 0, sd = 1),
-               p2_vec_logical = c(x + y > 0),
-               p2_vec_numeric = as.numeric(p2_vec_logical),
-               p2_vec_factor = as.factor(p2_vec_logical),
+               q2_vec_logical = c(x + y > 0),
+               q2_vec_numeric = as.numeric(q2_vec_logical),
+               q2_vec_factor = as.factor(q2_vec_logical),
 )
 
 ```
 
-### (b) Summary using inline R code
+### (b) Summary
 
-Write a short description of your vector using inline R code, including: 
-    * the size of the dataset 
-    * the mean and median of x 
-    * the proportion of cases for which the logical vector is TRUE
+* A short description of my vector using inline R code: 
+    * the **size** of the dataset is `r nrow(q2_df)` rows by `r ncol(q2_df)` columns
+    * the **mean** and **median** of x are `r mean(q2_df$x)` and `r median(q2_df$x)` respectively
+    * the **proportion** of cases for which the logical vector is TRUE is `r format(sum(q2_df$q2_vec_logical) / nrow(q2_df), digits = 2)`.
 
-The size of dataset is `r nrow(p2_df$x)`, the mean of x is `r mean(p2_df$x)`, and the median of x is `r median(p2_df$x)`, the proportion of cases for which the logical vector is TRUE is `r pro
 
 ## Scatterplot
 
 Make a scatterplot of y vs x.
 
 ```{r}
-p2_xy_sp1 <- ggplot(p2_df, aes(x = x, y = y, color = p2_vec_logical)) + geom_point()
+q2_xy_sp1 <- ggplot(q2_df, aes(x = x, y = y, color = q2_vec_logical)) + geom_point()
 
-p2_xy_sp1
+q2_xy_sp1
 ```
 Blue dots represent x + y > 0, and red dots represent x + y < 0.
 
 
 ```{r}
-p2_xy_sp2 <- ggplot(p2_df, aes(x =x, y = y, color = p2_vec_numeric)) + geom_point()
+q2_xy_sp2 <- ggplot(q2_df, aes(x =x, y = y, color = q2_vec_numeric)) + geom_point()
 
-p2_xy_sp2
+q2_xy_sp2
 ```
 
 
 
 ```{r}
-p2_xy_sp3 <- ggplot(p2_df, aes(x =x, y = y, color = p2_vec_factor)) + geom_point()
+q2_xy_sp3 <- ggplot(q2_df, aes(x =x, y = y, color = q2_vec_factor)) + geom_point()
 
-p2_xy_sp3
+q2_xy_sp3
 ```
 
 They all look the same.
@@ -127,6 +138,6 @@ They all look the same.
 Export your first scatterplot to your project directory using ggsave.
 
 ```{r}
-ggsave("p2_xy_sp1.pdf")
+ggsave("q2_xy_sp1.pdf")
 ```
 
