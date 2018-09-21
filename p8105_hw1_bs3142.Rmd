@@ -94,7 +94,7 @@ set.seed(2)
 
 q2_df = tibble(x = rnorm(n = 1000, mean = 0, sd = 1),
                y = rnorm(n = 1000, mean = 0, sd = 1),
-               q2_vec_logical = c(x + y > 0),
+               q2_vec_logical = (x + y > 0),
                q2_vec_numeric = as.numeric(q2_vec_logical),
                q2_vec_factor = as.factor(q2_vec_logical),
 )
@@ -116,7 +116,7 @@ Scatterplot 1 of y vs x and color by logical vector (x + y > 0)
 ggplot(q2_df, aes(x = x, y = y, color = q2_vec_logical)) + geom_point()
 ```
 
-* Since our logical vector is defined as x + y > 0, blue dots and red dots represent x + y > 0 and x + y < 0, respectively. The distribution of blue and red dots is symmetric, indicating normal distribution.
+* Since our logical vector is defined as x + y > 0, blue dots and red dots represent x + y > 0 and x + y < 0, respectively. There is a symmetrical distribution of blue and red dots, indicating normal distribution.
 
 Scatterplot 2 of y vs x, color by numeric vector
 
@@ -130,7 +130,7 @@ Scatterplot 3 of y vs x, color by factor vector
 ggplot(q2_df, aes(x =x, y = y, color = q2_vec_factor)) + geom_point()
 ```
 
-* Since both the numeric vector and factor vector are coerced from logical vector, we expect the three plots to resemble the same distribution. The resulting plots showed same pattern of distribution.
+* Since both the numeric vector and factor vector are coerced from logical vector, we expect the three plots to resemble the same distribution. In this case, the numeric vectors are 1s and 0s, and factor vectors are true and false. The resulting plots showed the same pattern of distribution.
 * For plot 2, which color by numeric vectors, the color is different from two other plots. The reason is that numerics can be continous, whereas both logical and factor vectors are discrete. Therefore, the color for plot 2 is a gradient where 0 is black and 1 is blue. In this case, the plot illustrates only two colors, consistent with numeric vector being only two values.
 
 Export my first scatterplot to my project directory using ggsave.
