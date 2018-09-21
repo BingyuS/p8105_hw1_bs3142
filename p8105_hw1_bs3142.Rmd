@@ -7,18 +7,18 @@ output: github_document
 
 # Problem 1
 
-## Create data frame
+## (a) Create data frame
 
 Load package tidyverse
 ```{r tidyverse}
 library(tidyverse)
 ```
 
-*Create a data frame comprised of*
-* A random sample of size 10 from a uniform[0, 5] distribution.
-* A logical vector indicating whether elements of the sample are greater than 2.
-* A (length-10) character vector.
-* A (length-10) factor vector.
+* Create a data frame comprised of
+    * A random sample of size 10 from a uniform[0, 5] distribution
+    * A logical vector indicating whether elements of the sample are greater than 2
+    * A (length-10) character vector
+    * A (length-10) factor vector
 ```{r q1_df}
 set.seed(1)
 
@@ -29,7 +29,8 @@ q1_df = tibble(q1_random_sample = runif(n = 10, min = 0, max = 5),
 )
 ```
 
-### Means of each variable in my dataframe.
+### (b) Mean of each variable in my dataframe
+
 Try to take the mean of each variable in your dataframe. What works and what doesn’t? Why?
 ```{r}
 mean(q1_df$q1_random_sample)
@@ -41,9 +42,9 @@ mean(q1_df$q1_vec_factor)
 Means of random_sample and logical vector work, whereas means for character vector and factor vector do not work. This is because means can only be calculated from numeric values.
 
 
-#### Convert character, logical, and factor vectors to numeric numbers
+#### (c) Convert character, logical, and factor vectors to numeric numbers
 
-Write a code chunk that applies the as.numeric function to the logical, character, and factor variables (show this chunk but not the output).
+* Write a code chunk that applies the as.numeric function to the logical, character, and factor variables (show this chunk but not the output).
 
 ```{r eval=FALSE}
 as.numeric(q1_df$q1_vec_char)
@@ -51,7 +52,7 @@ as.numeric(q1_df$q1_vec_logical)
 as.numeric(q1_df$q1_vec_factor)
 ```
 
-In a second code chunk, convert your character variable from character to factor to numeric; similarly, convert your factor variable from factor to character to numeric. What happens?
+* In a second code chunk, convert your character variable from character to factor to numeric; similarly, convert your factor variable from factor to character to numeric. What happens?
 
 ```{r}
 q1_vec_char2 <- as.factor(q1_df$q1_vec_char)
@@ -65,15 +66,16 @@ When character variable is converted to factor variable first, it can be convert
 
 
 # Problem 2
+
 This problem focuses on plotting and the use of inline R code.
 
-## Create data frame
-Create a data frame comprised of:
-x: a random sample of size 1000 from a standard Normal distribution
-y: a random sample of size 1000 from a standard Normal distribution
-A logical vector indicating whether the x + y > 0
-A numeric vector created by coercing the above logical vector
-A factor vector created by coercing the above logical vector
+## (a) Create data frame
+* Create a data frame comprised of:
+    * x: a random sample of size 1000 from a standard Normal distribution
+    * y: a random sample of size 1000 from a standard Normal distribution
+    * A logical vector indicating whether the x + y > 0
+    * A numeric vector created by coercing the above logical vector
+    * A factor vector created by coercing the above logical vector
 
 ```{r}
 p2_df = tibble(x = rnorm(n = 1000, mean = 0, sd = 1),
@@ -85,7 +87,12 @@ p2_df = tibble(x = rnorm(n = 1000, mean = 0, sd = 1),
 
 ```
 
-Write a short description of your vector using inline R code, including: * the size of the dataset * the mean and median of x * the proportion of cases for which the logical vector is TRUE
+### (b) Summary using inline R code
+
+Write a short description of your vector using inline R code, including: 
+    * the size of the dataset 
+    * the mean and median of x 
+    * the proportion of cases for which the logical vector is TRUE
 
 The size of dataset is `r nrow(p2_df$x)`, the mean of x is `r mean(p2_df$x)`, and the median of x is `r median(p2_df$x)`, the proportion of cases for which the logical vector is TRUE is `r pro
 
