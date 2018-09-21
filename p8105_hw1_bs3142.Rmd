@@ -49,7 +49,7 @@ Using mean() function, mean of my random sample and mean of logical vector can b
 
 Using as.numeric function to convert the logical, character, and factor variables to numeric numbers (code is included but not the output).
 
-```{r eval=FALSE}
+```{r as.numeric, eval=FALSE}
 as.numeric(q1_df$q1_vec_char)
 as.numeric(q1_df$q1_vec_logical)
 as.numeric(q1_df$q1_vec_factor)
@@ -96,7 +96,6 @@ q2_df = tibble(x = rnorm(n = 1000, mean = 0, sd = 1),
                q2_vec_numeric = as.numeric(q2_vec_logical),
                q2_vec_factor = as.factor(q2_vec_logical),
 )
-
 ```
 
 ### (b) Summary
@@ -104,7 +103,7 @@ q2_df = tibble(x = rnorm(n = 1000, mean = 0, sd = 1),
 * A short description of my vector using inline R code: 
     * the **size** of the dataset is `r nrow(q2_df)` rows by `r ncol(q2_df)` columns
     * the **mean** and **median** of x are `r mean(q2_df$x)` and `r median(q2_df$x)` respectively
-    * the **proportion** of cases for which the logical vector is TRUE is `r format(sum(q2_df$q2_vec_logical) / nrow(q2_df), digits = 2)`.
+    * the **proportion** of cases for which the logical vector is TRUE is `r length(which(q2_df$q2_vec_logical == TRUE)) / length(q2_df$q2_vec_logical)`.
 
 
 ## Scatterplot
